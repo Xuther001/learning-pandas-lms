@@ -122,7 +122,7 @@ export type Learner = {
   createdAt: string
 }
 
-export const LEARNER_AVATARS = ['🐼', '🐻', '🐰', '🦊', '🐸', '🐱', '🐯', '🐨']
+export const LEARNER_AVATARS = ['📘', '🌿', '⭐', '🎯', '🧠', '🌍', '✍️', '💡']
 
 export async function getLearners(): Promise<Learner[]> {
   const response = await fetch(`${API_URL}/learners`, {

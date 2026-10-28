@@ -142,7 +142,7 @@ function App() {
     }
   })
   const [newLearnerName, setNewLearnerName] = useState('')
-  const [newLearnerAvatar, setNewLearnerAvatar] = useState('🐼')
+  const [newLearnerAvatar, setNewLearnerAvatar] = useState(LEARNER_AVATARS[0])
   const [learnerError, setLearnerError] = useState('')
   const [learnerSaving, setLearnerSaving] = useState(false)
   const [done, setDone] = useState<string[]>([])
@@ -303,7 +303,7 @@ function App() {
       const learner = await createLearner(newLearnerName.trim(), newLearnerAvatar)
       setLearners((current) => [...current, learner])
       setNewLearnerName('')
-      setNewLearnerAvatar('🐼')
+      setNewLearnerAvatar(LEARNER_AVATARS[0])
       setActiveLearnerId(learner.id)
       setActivePage('Dashboard')
     } catch (error) {
@@ -507,7 +507,7 @@ function App() {
             </button>
             <label className="learner-switcher">
               <span className="learner-switcher-avatar" aria-hidden="true">
-                {activeLearner?.avatar ?? 'FP'}
+                {activeLearner?.avatar && ['🐼', '🐻', '🐰', '🦊', '🐸', '🐱', '🐯', '🐨'].includes(activeLearner.avatar) ? '📘' : (activeLearner?.avatar ?? 'FP')}
               </span>
               <span className="learner-switcher-copy">
                 <small>LEARNING AS</small>
@@ -695,7 +695,7 @@ function App() {
               <div className="learner-list">
                 {learners.map((learner) => (
                   <article className={`learner-card ${learner.id === activeLearnerId ? 'learner-card-active' : ''}`} key={learner.id}>
-                    <div className="learner-card-avatar" aria-hidden="true">{learner.avatar}</div>
+                    <div className="learner-card-avatar" aria-hidden="true">{['🐼', '🐻', '🐰', '🦊', '🐸', '🐱', '🐯', '🐨'].includes(learner.avatar) ? '📘' : learner.avatar}</div>
                     <div className="learner-card-copy">
                       <strong>{learner.name}</strong>
                       <small>{learner.id === activeLearnerId ? 'Currently selected' : 'Learner profile'}</small>
@@ -721,7 +721,7 @@ function App() {
                   className="learner-name-input"
                   value={newLearnerName}
                   onChange={(event) => setNewLearnerName(event.target.value)}
-                  placeholder="e.g. Little Panda"
+                  placeholder="e.g. Alex Morgan"
                   maxLength={40}
                   required
                 />
